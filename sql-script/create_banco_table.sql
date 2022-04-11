@@ -11,7 +11,7 @@ CREATE TABLE `banco`.`clientes` (
 PRIMARY KEY (`id`),
 UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
 
-INSERT INTO banco, clientes
+INSERT INTO banco.clientes
 VALUES (1,'pedro','p','p',26,1111.11);
 INSERT INTO banco.clientes
 VALUES (2,'ana','a','aa',17,20000.0);
