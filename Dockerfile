@@ -1,4 +1,4 @@
-FROM mysql:latest AS bbdd_banco
+FROM mysql:latest AS mysql_banco
 ENV MYSQL_DATABASE banco
 COPY ./sql-script/ /docker-entrypoint-initdb.d/
 
