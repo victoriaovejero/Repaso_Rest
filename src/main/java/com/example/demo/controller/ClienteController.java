@@ -23,27 +23,20 @@ public class ClienteController {
 	IClienteService clienteservice;
 	
 	@PostMapping("/add")
-	public int add(@RequestBody Cliente cliente) {
-		clienteservice.add(cliente);
-		return 0;
+	public Integer anadirCliente(@RequestBody Cliente cliente) {
+		Cliente clienteaux = clienteservice.findCliente(cliente.getId());
+		if (clienteaux == null) {
+			clienteservice.addCliente(cliente);
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 	
 	@GetMapping("/list_all")
 	public List<Cliente> listClientes()	{
 		return clienteservice.listAll();
 	}
-	
-	@DeleteMapping("/delete/{id}")
-	public Integer delete(@PathVariable("id") Integer id) {
-		Cliente clienteaux =clienteservice.findCliente(id);
-		if (clienteaux ==null) {
-			return 0;
-		} else {
-			clienteservice.delete(id);
-			return 1;
-		}
-	}
-	
 	
 	@GetMapping("/find_cliente/{id}")
 	public Cliente getCliente(@PathVariable("id") Integer id){
@@ -55,13 +48,23 @@ public class ClienteController {
 		}
 	}
 	
-	@PutMapping("/update")
-	public Integer update(@RequestBody Cliente cliente) {
+	@PutMapping("/update_client")
+	public Integer modificarCliente(@RequestBody Cliente cliente) {
 		Cliente clienteaux = clienteservice.findCliente(cliente.getId());
 		if (clienteaux == null) {
 			return 0;
-		}else {
+		} else {
 			clienteservice.modifyCliente(clienteaux);
+			return 1;
+		}
+	}
+	@DeleteMapping("/delete/{id}")
+	public Integer delete(@PathVariable("id") Integer id) {
+		Cliente clienteaux =clienteservice.findCliente(id);
+		if (clienteaux ==null) {
+			return 0;
+		} else {
+			clienteservice.deleteCliente(id);
 			return 1;
 		}
 	}

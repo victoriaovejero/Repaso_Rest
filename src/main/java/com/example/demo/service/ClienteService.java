@@ -17,7 +17,7 @@ public class ClienteService implements IClienteService {
 	ClienteRepository clienterepository;//el segundo puede llevar el nombre que quieras
 
 	@Override
-	public void add(Cliente cliente) {
+	public void addCliente(Cliente cliente) {
 		clienterepository.save(cliente);
 		// TODO Auto-generated method stub
 
@@ -44,7 +44,7 @@ public class ClienteService implements IClienteService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void deleteCliente(int id) {
 		// TODO Auto-generated method stub
 		clienterepository.deleteById(id);
 	}
