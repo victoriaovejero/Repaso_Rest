@@ -15,6 +15,7 @@ services:
     
   rest_service:
     build:
+      context: .
       dockerfile: Dockerfile
       target: rest_service
     ports:
