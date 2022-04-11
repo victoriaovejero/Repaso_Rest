@@ -12,7 +12,7 @@ services:
     networks:
       test_network:
         aliases:
-          - 'mysql_banco'
+          - 'bbdd_banco'
     
   rest_service:
     build:
