@@ -2,6 +2,7 @@ version: '3.4'
 services:
   mysql_banco:
     build: 
+      context: .
       dockerfile: Dockerfile
       target: mysql_banco
     ports:
