@@ -16,7 +16,6 @@ import com.example.demo.interfaces.IClienteService;
 import com.example.demo.model.Cliente;
 
 @RestController
-@RequestMapping("/clientes")
 public class ClienteController {
 
 	@Autowired
