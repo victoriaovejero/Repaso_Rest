@@ -24,20 +24,20 @@ public class ClienteService implements IClienteService {
 	}
 
 	@Override
-	public List<Cliente> list_all() {
+	public List<Cliente> listAll() {
 		
 		// TODO Auto-generated method stub
 		return (List<Cliente>) clienterepository.findAll();
 	}
 
 	@Override
-	public Cliente find_by_id(int id) {
+	public Cliente findCliente(int id) {
 		// TODO Auto-generated method stub
 		return clienterepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public void modificar_cliente(Cliente cliente) {
+	public void modifyCliente(Cliente cliente) {
 		// TODO Auto-generated method stub
 		clienterepository.save(cliente);
 

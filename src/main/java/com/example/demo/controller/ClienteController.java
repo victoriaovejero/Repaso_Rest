@@ -16,6 +16,7 @@ import com.example.demo.interfaces.IClienteService;
 import com.example.demo.model.Cliente;
 
 @RestController
+@RequestMapping("/clientes")
 public class ClienteController {
 
 	@Autowired
@@ -28,24 +29,40 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/list_all")
-	public List<Cliente> get_clientes()	{
-		return clienteservice.list_all();
+	public List<Cliente> listClientes()	{
+		return clienteservice.listAll();
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") int cliente) {
-		clienteservice.delete(cliente);
+	public Integer delete(@PathVariable("id") Integer id) {
+		Cliente clienteaux =clienteservice.findCliente(id);
+		if (clienteaux ==null) {
+			return 0;
+		} else {
+			clienteservice.delete(id);
+			return 1;
+		}
 	}
 	
 	
-	@GetMapping("/find_by_id/{cliente}")
-	public Cliente find_by_id(@PathVariable("cliente") int cliente){
-		return clienteservice.find_by_id(cliente);	
+	@GetMapping("/find_cliente/{id}")
+	public Cliente getCliente(@PathVariable("id") Integer id){
+		Cliente clienteaux = clienteservice.findCliente(id);
+		if (clienteaux == null) {
+			return new Cliente();
+		}else {
+			return clienteaux;	
+		}
 	}
 	
 	@PutMapping("/update")
-	public int update(@RequestBody Cliente cliente) {
-		clienteservice.modificar_cliente(cliente);
-		return 0;
+	public Integer update(@RequestBody Cliente cliente) {
+		Cliente clienteaux = clienteservice.findCliente(cliente.getId());
+		if (clienteaux == null) {
+			return 0;
+		}else {
+			clienteservice.modifyCliente(clienteaux);
+			return 1;
+		}
 	}
 }
